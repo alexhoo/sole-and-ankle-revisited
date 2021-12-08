@@ -1,10 +1,12 @@
-import React from 'react';
-import styled from 'styled-components/macro';
+import React from "react";
+import styled from "styled-components";
 
-import { COLORS, WEIGHTS } from '../../constants';
-import Logo from '../Logo';
-import SuperHeader from '../SuperHeader';
-import MobileMenu from '../MobileMenu';
+import { COLORS, WEIGHTS, MEDIAQUERY } from "../../constants";
+import Logo from "../Logo";
+import SuperHeader from "../SuperHeader";
+import MobileMenu from "../MobileMenu";
+import Icon from "../Icon";
+import UnstyledButton from "../UnstyledButton";
 
 const Header = () => {
   const [showMobileMenu, setShowMobileMenu] = React.useState(false);
@@ -18,18 +20,29 @@ const Header = () => {
     <header>
       <SuperHeader />
       <MainHeader>
-        <Side>
+        <LogoWrapper>
           <Logo />
-        </Side>
-        <Nav>
+        </LogoWrapper>
+        <DesktopNavigation>
           <NavLink href="/sale">Sale</NavLink>
           <NavLink href="/new">New&nbsp;Releases</NavLink>
           <NavLink href="/men">Men</NavLink>
           <NavLink href="/women">Women</NavLink>
           <NavLink href="/kids">Kids</NavLink>
           <NavLink href="/collections">Collections</NavLink>
-        </Nav>
-        <Side />
+        </DesktopNavigation>
+        <MenuActions>
+          <UnstyledButton>
+            <Icon id="shopping-bag" />
+          </UnstyledButton>
+          <UnstyledButton>
+            <Icon id="search" />
+          </UnstyledButton>
+          <UnstyledButton>
+            <Icon id="menu" />
+          </UnstyledButton>
+        </MenuActions>
+        <Filler />
       </MainHeader>
 
       <MobileMenu
@@ -46,18 +59,49 @@ const MainHeader = styled.div`
   padding: 18px 32px;
   height: 72px;
   border-bottom: 1px solid ${COLORS.gray[300]};
+
+  ${MEDIAQUERY.table} {
+    justify-content: space-between;
+    align-items: center;
+    border-top: 4px solid ${COLORS.gray[900]};
+  }
 `;
 
-const Nav = styled.nav`
+const DesktopNavigation = styled.nav`
   display: flex;
   gap: 48px;
   margin: 0px 48px;
+
+  ${MEDIAQUERY.tablet} {
+    display: none;
+  }
 `;
 
-const Side = styled.div`
+const MenuActions = styled.div`
+  display: none;
+  ${MEDIAQUERY.tablet} {
+    display: flex;
+    gap: 32px;
+    margin-left: auto;
+  }
+  ${MEDIAQUERY.phone} {
+    gap: 16px;
+  }
+`;
+
+const LogoWrapper = styled.div`
   flex: 1;
+  ${MEDIAQUERY.tablet} {
+    flex: revert;
+  }
 `;
 
+const Filler = styled.div`
+  flex: 1;
+  ${MEDIAQUERY.tablet} {
+    flex: 0;
+  }
+`;
 const NavLink = styled.a`
   font-size: 1.125rem;
   text-transform: uppercase;

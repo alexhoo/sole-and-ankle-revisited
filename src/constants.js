@@ -18,7 +18,7 @@ export const WEIGHTS = {
 };
 
 export const MEDIAQUERY = {
-  phone: "@media (max-width: 37.5rem)",
-  tablet: "@media (max-width: 59.375rem)",
-  laptop: "@media (max-width: 81.25rem)",
+  phone: "@media (max-width: 37.5rem)", // 600px
+  tablet: "@media (max-width: 59.375rem)", // 950px
+  laptop: "@media (max-width: 81.25rem)", // 1300px
 };

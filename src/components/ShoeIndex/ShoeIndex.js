@@ -9,30 +9,43 @@ import Spacer from "../Spacer";
 import ShoeSidebar from "../ShoeSidebar";
 import ShoeGrid from "../ShoeGrid";
 
+const ShoeBreadcrumbs = () => (
+  <Breadcrumbs>
+    <Breadcrumbs.Crumb href="/">Home</Breadcrumbs.Crumb>
+    <Breadcrumbs.Crumb href="/sale">Sale</Breadcrumbs.Crumb>
+    <Breadcrumbs.Crumb href="/sale/shoes">Shoes</Breadcrumbs.Crumb>
+  </Breadcrumbs>
+);
+
 const ShoeIndex = ({ sortId, setSortId }) => {
   return (
     <Wrapper>
       <MainColumn>
         <Header>
-          <Title>Running</Title>
-          <Select
-            label="Sort"
-            value={sortId}
-            onChange={(ev) => setSortId(ev.target.value)}
-          >
-            <option value="newest">Newest Releases</option>
-            <option value="price">Price</option>
-          </Select>
+          <TitleAndBreadcrumbWrapper>
+            <BreadcrumbsDeviceWrapper>
+              <ShoeBreadcrumbs />
+            </BreadcrumbsDeviceWrapper>
+            <Title>Running</Title>
+          </TitleAndBreadcrumbWrapper>
+          <SortWrapper>
+            <Select
+              label="Sort"
+              value={sortId}
+              onChange={(ev) => setSortId(ev.target.value)}
+            >
+              <option value="newest">Newest Releases</option>
+              <option value="price">Price</option>
+            </Select>
+          </SortWrapper>
         </Header>
         <Spacer size={32} />
         <ShoeGrid />
       </MainColumn>
       <LeftColumn>
-        <Breadcrumbs>
-          <Breadcrumbs.Crumb href="/">Home</Breadcrumbs.Crumb>
-          <Breadcrumbs.Crumb href="/sale">Sale</Breadcrumbs.Crumb>
-          <Breadcrumbs.Crumb href="/sale/shoes">Shoes</Breadcrumbs.Crumb>
-        </Breadcrumbs>
+        <BreadcrumbsDesktopWrapper>
+          <ShoeBreadcrumbs />
+        </BreadcrumbsDesktopWrapper>
         <Spacer size={42} />
         <ShoeSidebar />
       </LeftColumn>
@@ -45,7 +58,6 @@ const Wrapper = styled.div`
   flex-direction: row-reverse;
   align-items: baseline;
   gap: 32px;
-  margin-left: auto;
 `;
 
 const LeftColumn = styled.div`
@@ -64,11 +76,34 @@ const Header = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+  ${MEDIAQUERY.tablet} {
+    align-items: flex-end;
+  }
 `;
 
 const Title = styled.h2`
   font-size: 1.5rem;
   font-weight: ${WEIGHTS.medium};
+`;
+
+const TitleAndBreadcrumbWrapper = styled.div``;
+
+const BreadcrumbsDeviceWrapper = styled.div`
+  display: none;
+  ${MEDIAQUERY.tablet} {
+    display: flex;
+    flex-direction: column;
+  }
+`;
+const BreadcrumbsDesktopWrapper = styled.div`
+  ${MEDIAQUERY.tablet} {
+    display: none;
+  }
+`;
+const SortWrapper = styled.div`
+  ${MEDIAQUERY.phone} {
+    display: none;
+  }
 `;
 
 export default ShoeIndex;

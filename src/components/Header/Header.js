@@ -38,7 +38,7 @@ const Header = () => {
           <UnstyledButton>
             <Icon id="search" />
           </UnstyledButton>
-          <UnstyledButton>
+          <UnstyledButton onClick={() => setShowMobileMenu(!showMobileMenu)}>
             <Icon id="menu" />
           </UnstyledButton>
         </MenuActions>

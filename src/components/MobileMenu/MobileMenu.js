@@ -59,7 +59,7 @@ const Overlay = styled(DialogOverlay)`
   top: 0;
   left: 0;
   bottom: 0;
-  background-color: hsla(220deg 5% 40% / 0.8);
+  background-color: var(--color-backdrop);
   display: flex;
   justify-content: flex-end;
 `;
@@ -81,7 +81,7 @@ const NavItem = styled.a`
   padding: 0 32px;
   text-decoration: none;
   text-transform: uppercase;
-  color: ${COLORS.gray[900]};
+  color: var(--color-gray-900);
   font-weight: ${WEIGHTS.medium};
   font-size: 1.125rem;
 `;
@@ -96,6 +96,7 @@ const Footer = styled.div`
 const FooterItem = styled.a`
   font-size: ${14 / 16}rem;
   text-decoration: none;
-  color: ${COLORS.gray[700]};
-  font-weight: ${WEIGHTS.medium};
+  color: var(--color-gray-700);
+  font-weight: ${WEIGHTS.normal};
+  line-height: 1.7;
 `;
